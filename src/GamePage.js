@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { NumberPlayers, PlayerName, AddCards } from './action';
 import Player from './components/Player.js';
 import { ListGroup, ListGroupItem, Panel, Button } from 'react-bootstrap';
+import { AddCards } from './action';
+import Table from './components/Table';
+import Card from './components/Card';
 import './App.css';
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
@@ -20,7 +23,8 @@ class GamePage extends Component {
      player0: false,
      player1: null,
      player2: null,
-     player3: null
+     player3: null,
+     tableCards: []
     }
 
     this.getDeckId();
@@ -40,15 +44,34 @@ class GamePage extends Component {
     );
   };
 
+  createCardComponents = () => {
+    return this.props.table.map((card)=> {
+        return(
+            <Card key={card.code} url={card.image} func={()=>{}}/>
+        );
+    });
+  }
+
+  updateTableCards = () => {
+    const newTableCards = this.createCardComponents();
+
+    this.setState({
+      tableCards: newTableCards
+    });
+  }
+
   drawCards = (playerNumber) => {
     axios.get(API_PATH + this.state.deckId + DRAW_CARDS_PATH).then(res =>{
       let playersCards = res.data.cards;
       this.props.addCards(playersCards, playerNumber);
-      let player = 'player' + playerNumber;
-      let playerComponent = this.getPlayer(playerNumber);
+      // let player = 'player' + playerNumber;
+      // let playerComponent = this.getPlayer(playerNumber);
+
+      let tableCards = this.createCardComponents();
 
       this.setState({
-        player0: true
+        player0: true,
+        tableCards: tableCards
       });
     });
   }
@@ -67,7 +90,7 @@ class GamePage extends Component {
           <div className="table">
             <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
                   Podeli karte </Button>
-            {this.props.table}
+            <Table table={this.state.tableCards}/>
           </div>
         </header>
         <div>
@@ -77,7 +100,7 @@ class GamePage extends Component {
           {this.props.nump>=4?<ListGroupItem className="listG blue" ><p>Player 3</p></ListGroupItem>:''}
           <ListGroupItem className="listG green" ref="player0">
             <div>
-              {this.props.name}<br />{this.state.player0?<Player index={0} />:''}
+              {this.props.name}<br />{this.state.player0?<Player updateTableCards={()=> this.updateTableCards()} index={0} />:''}
             </div>
           </ListGroupItem>
         </ListGroup>
