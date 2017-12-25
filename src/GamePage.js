@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { NumberPlayers, PlayerName, AddCards } from './action';
 import Player from './components/Player.js';
 import { ListGroup, ListGroupItem, Panel, Button } from 'react-bootstrap';
-import { AddCards } from './action';
 import Table from './components/Table';
 import Card from './components/Card';
 import './App.css';
@@ -64,9 +63,6 @@ class GamePage extends Component {
     axios.get(API_PATH + this.state.deckId + DRAW_CARDS_PATH).then(res =>{
       let playersCards = res.data.cards;
       this.props.addCards(playersCards, playerNumber);
-      // let player = 'player' + playerNumber;
-      // let playerComponent = this.getPlayer(playerNumber);
-
       let tableCards = this.createCardComponents();
 
       this.setState({
@@ -88,9 +84,13 @@ class GamePage extends Component {
       <div className="App">
         <header className="App-header">
           <div className="table">
-            <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
-                  Podeli karte </Button>
-            <Table table={this.state.tableCards}/>
+            <div>
+              <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
+                  Draw cards </Button>
+            </div>
+            <div>
+              <Table table={this.state.tableCards}/>
+            </div>
           </div>
         </header>
         <div>

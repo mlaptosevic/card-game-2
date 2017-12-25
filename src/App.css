@@ -2,7 +2,6 @@
   text-align: left;
 }
 
-
 .App-header {
   background-color: darkgreen;
   min-height: 150px;
@@ -46,6 +45,9 @@
   display:block;
   float:left;
   background-color:limegreen;
+  display:flex;
+  flex-direction:row;
+  
 }
 
 .gameplay{
@@ -71,7 +73,7 @@
  overflow:hidden;
 }
 
-p{
+p {
   color:black;
 }
 
