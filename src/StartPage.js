@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios';
 import { NumberPlayers, PlayerName } from './action';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import './App.css';
 
 class StartPage extends Component {
@@ -23,28 +23,30 @@ class StartPage extends Component {
 
   sendActionChangeName = () => {
     this.props.changeName(this.state.name);
+    this.props.changeFirstpart();
+
   };
 
    render(){
      return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1> Odaberite broj igraca </h1>
+            <h3> Choose number of players </h3>
         </header>
-        <div>
-  				<button className="nump" onClick={(() => this.props.changeNump(2))}>2</button>
-  				<button className="nump" onClick={(() => this.props.changeNump(3))}>3</button>
-  				<button className="nump" onClick={(() => this.props.changeNump(4))}>4</button>
+        <div className="block">
+  				<Button bsSize="large" bsStyle="warning" className="nump" onClick={(() => this.props.changeNump(2))}>2 players</Button>
+  				<Button bsSize="large" bsStyle="danger" className="nump" onClick={(() => this.props.changeNump(3))}>3 players</Button>
+  				<Button bsSize="large" bsStyle="info" className="nump" onClick={(() => this.props.changeNump(4))}>4 players</Button>
 				</div>
-        <p>Unesi ime</p>
-        <input type="text" onChange={this.saveName} />
+        <div className="clearfix"></div><br/>
+        <div className="block">
+          <p>Enter your name</p>
+          <input type="text" onChange={this.saveName} />
+        </div>
+        <br/>
+        <div className="block">
+          <Button bsSize="large" bsStyle="success" onClick={this.sendActionChangeName}>Submit</Button> <br/>
 
-        <div>
-        <br/><button onClick={this.sendActionChangeName}>click</button> <br/>
-          TEST:<br/>
-            {this.props.state.nump} <br/>
-            {this.props.state.name}
         </div>
       </div>
       );

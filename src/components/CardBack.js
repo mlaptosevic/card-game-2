@@ -3,7 +3,7 @@ import { SendCardFromStoreToTable } from '../action';
 import { connect } from 'react-redux';
 import './Card.css';
 
-class Card extends Component {
+class CardBack extends Component {
 
   removeCard = () => {
     this.props.sendCardFromStoreToTable(this.props.cardId, this.props.playerId);
@@ -12,7 +12,7 @@ class Card extends Component {
   render(){
     return(
       <div className="card">
-        <img className="cardImage" src={this.props.url} onClick={this.removeCard}/>
+        <img className="cardImage" src="karta.jpg" onClick={this.removeCard} />
       </div>
     );
   }
@@ -24,12 +24,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-
 const mapDispatchToProps = (dispatch) => {
   return {
     sendCardFromStoreToTable: ( (cardId, playerId) => dispatch(SendCardFromStoreToTable(cardId, playerId)))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(CardBack);

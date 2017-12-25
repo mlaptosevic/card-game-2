@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { NumberPlayers, PlayerName, AddCards } from './action';
 import Player from './components/Player.js';
+import { ListGroup, ListGroupItem, Panel, Button } from 'react-bootstrap';
 import './App.css';
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
@@ -64,20 +64,24 @@ class GamePage extends Component {
      return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1> Izaberite kartu </h1>
-          <h5 className="podnaslov">Najveca karta odnosi ostale</h5>
+          <div className="table">
+            <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
+                  Podeli karte </Button>
+            {this.props.table}
+          </div>
         </header>
         <div>
-  				<div className="horiz border" ref="player1"> </div>
-          <div className="aside border" ref="player2"></div>
-          <div className="tabla border">
-              <button onClick={this.drawAllCards}>Podeli karte</button>
-              {this.props.table}
-          </div>
-          <div className="aside border" ref="player3"></div>
-          <div className="horiz border" ref="player0">{this.state.player0?<Player index={0} />:''} </div>
-				</div>
+        <ListGroup>
+          <ListGroupItem className="listG"><p>Player 1</p></ListGroupItem>
+          {this.props.nump>=3?<ListGroupItem className="listG pink" ><p>Player 2</p></ListGroupItem>:''}
+          {this.props.nump>=4?<ListGroupItem className="listG blue" ><p>Player 3</p></ListGroupItem>:''}
+          <ListGroupItem className="listG green" ref="player0">
+            <div>
+              {this.props.name}<br />{this.state.player0?<Player index={0} />:''}
+            </div>
+          </ListGroupItem>
+        </ListGroup>
+        </div>
       </div>
     )
   }
@@ -88,7 +92,8 @@ const mapStateToProps = (state) => {
     cards: state.cards,
     points: state.points,
     nump: state.nump,
-    table: state.table
+    table: state.table,
+    name: state.name
   };
 };
 
