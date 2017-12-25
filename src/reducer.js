@@ -22,8 +22,6 @@ export const reducer=(state,action) => {
         copyState.table[action.playerId] = card;
         copyState.cards[action.playerId] = newCards;
 
-        console.log(copyState);
-        
         return copyState;
 
       default:

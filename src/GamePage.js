@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { NumberPlayers, PlayerName, AddCards } from './action';
-import Player from './components/Player.js';
+import { AddCards } from './action';
+import Player from './components/Player';
+import Table from './components/Table';
+import Card from './components/Card';
 import './App.css';
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
@@ -20,7 +22,8 @@ class GamePage extends Component {
      player0: false,
      player1: null,
      player2: null,
-     player3: null
+     player3: null,
+     tableCards: []
     }
 
     this.getDeckId();
@@ -40,15 +43,34 @@ class GamePage extends Component {
     );
   };
 
+  createCardComponents = () => {
+    return this.props.table.map((card)=> {
+        return(
+            <Card key={card.code} url={card.image} func={()=>{}}/>
+        );
+    });
+  }
+
+  updateTableCards = () => {
+    const newTableCards = this.createCardComponents();
+
+    this.setState({
+      tableCards: newTableCards
+    });
+  }
+
   drawCards = (playerNumber) => {
     axios.get(API_PATH + this.state.deckId + DRAW_CARDS_PATH).then(res =>{
       let playersCards = res.data.cards;
       this.props.addCards(playersCards, playerNumber);
-      let player = 'player' + playerNumber;
-      let playerComponent = this.getPlayer(playerNumber);
+      // let player = 'player' + playerNumber;
+      // let playerComponent = this.getPlayer(playerNumber);
+
+      let tableCards = this.createCardComponents();
 
       this.setState({
-        player0: true
+        player0: true,
+        tableCards: tableCards
       });
     });
   }
@@ -73,10 +95,10 @@ class GamePage extends Component {
           <div className="aside border" ref="player2"></div>
           <div className="tabla border">
               <button onClick={this.drawAllCards}>Podeli karte</button>
-              {this.props.table}
+              <Table table={this.state.tableCards}/>
           </div>
           <div className="aside border" ref="player3"></div>
-          <div className="horiz border" ref="player0">{this.state.player0?<Player index={0} />:''} </div>
+          <div className="horiz border" ref="player0">{this.state.player0?<Player updateTableCards={()=> this.updateTableCards()} index={0} />:''} </div>
 				</div>
       </div>
     )

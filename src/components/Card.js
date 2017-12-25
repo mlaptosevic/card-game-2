@@ -7,6 +7,8 @@ class Card extends Component {
 
   removeCard = () => {
     this.props.sendCardFromStoreToTable(this.props.cardId, this.props.playerId);
+    this.props.func(this.props.cardId);
+    this.props.updateTableCards();
   };
 
   render(){
