@@ -57,10 +57,10 @@ class GamePage extends Component {
     };
 
     printWinners = () => {
-        if(this.props.winners[0] === -1)
+        if (this.props.winners[0] === -1)
             return '';
 
-        let winnersNames =  [];
+        let winnersNames = [];
 
         this.props.winners.forEach((winnerIndex) => {
             winnersNames.push(this.props.playersName[winnerIndex]);
@@ -73,40 +73,41 @@ class GamePage extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <div className="table">
-                        <div>
-                            <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
-                                Draw cards </Button>
-                        </div>
-                        <div>
-                            <Table/>
-                        </div>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3">
+                        {this.state.drawnHands === this.props.nump ?
+                            <Player name={this.props.playersName[1]} index={1}/> : ''}
                     </div>
-                    <div>
-                        {this.printWinners()}
-                    </div>
-                </header>
-                <div>
-                    <div>
-                        {this.state.drawnHands === this.props.nump ? <Player name={this.props.playersName[1]} index={1}/> : ''}
-                    </div>
-                    <div>
-                        {this.state.drawnHands === this.props.nump && this.props.nump >= 3 ?
+                </div>
+                <div className="row">
+                    <div className="col-xs-5">
+                        {this.state.drawnHands === this.props.nump ?
                             <Player name={this.props.playersName[2]} index={2}/> : ''}
                     </div>
-                    <div>
-                        {this.state.drawnHands === this.props.nump && this.props.nump >= 4 ?
+                    <div className="col-xs-2">
+                        {this.props.winners[0] === -1?<Table/>:
+                        this.printWinners()}
+                    </div>
+                    <div className="col-xs-5">
+                        {this.state.drawnHands === this.props.nump ?
                             <Player name={this.props.playersName[3]} index={3}/> : ''}
                     </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3">
+                        {this.state.drawnHands === this.props.nump ?
+                            <Player name={this.props.playersName[0]} index={0}/> : ''}
+                    </div>
+                </div>
+                <div className="row">
                     <div>
-                        <br/>{this.state.drawnHands === this.props.nump ?
-                        <Player name={this.props.playersName[0]} index={0}/> : ''}
+                        <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
+                            Draw cards </Button>
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
