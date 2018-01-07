@@ -21,10 +21,26 @@ export const AddCards = (cards, index) => {
   };
 };
 
-export const SendCardFromStoreToTable = (cardId, playerId) => {
+export const RemoveCards = (playerIndex, cardCode) => {
+    return {
+        type: 'REMOVE_CARDS',
+        playerIndex: playerIndex,
+        cardCode: cardCode
+    };
+};
+
+export const SendCardFromStoreToTable = (playerId, cardId) => {
   return {
     type: 'SEND_CARD_FROM_STORE_TO_TABLE',
     cardId: cardId,
     playerId: playerId
   };
+};
+
+export const IncreasePoints = (playerIndex, points) => {
+    return {
+        type: 'INCREASE_POINTS',
+        playerIndex: playerIndex,
+        points: points
+    }
 };

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
 import GamePage from './GamePage.js';
 import StartPage from './StartPage.js';
@@ -20,7 +19,6 @@ class App extends Component {
    this.setState({
      firstpart: !this.state.firstpart
    });
-   console.log(this.state.firstpart);
  }
 
   render() {

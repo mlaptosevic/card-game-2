@@ -1,54 +1,73 @@
 import React, {Component} from 'react';
 import Card from './Card';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {IncreasePoints, SendCardFromStoreToTable} from "../action";
+import "./Player.css";
+import backCardImage from './karta.jpg';
+import CardStrength from "../CardStrength";
+
 
 class Player extends Component {
+    constructor(props) {
+        super(props);
 
-  constructor(props) {
-    super(props);
+        this.state = {
+            numberOfFinishedPlayers: 0
+        };
+    }
 
-    let cardList = this.cardList(this.props.index); 
-    this.state = {
-      cardList: cardList
+    removeFromState = (cardCode) => {
+        if (this.props.index !== 0)
+            return;
+        this.props.sendCardFromStoreToTable(this.props.index, cardCode);
+
+        for (let botPlayerIndex = 1; botPlayerIndex < this.props.nump; botPlayerIndex++) {
+            let randomCardCode = this.props.cards[botPlayerIndex].pop().code;
+            setTimeout(()=> {
+                this.props.sendCardFromStoreToTable(botPlayerIndex, randomCardCode);
+            },botPlayerIndex * 500);
+        }
     };
-  }
 
-  cardList = (index) => {
-      return this.props.cards[index].map((card)=>(
-          <Card key={card.code} url={card.image} cardId={card.code} playerId={index} func={(index) => this.removeFromState(index)} updateTableCards={() => this.props.updateTableCards()}/>
-      ));
-  };
 
-  removeFromState = (cardCode) => {
-    let newCardList = this.state.cardList.filter((card) => {
-      return card.key !== cardCode;
-    });
+    render() {
+        if (!(this.props.index !== undefined && this.props.cards && this.props.cards[this.props.index]))
+            return null;
 
-    this.setState({
-      cardList: newCardList
-    });
-  };
+        let cardListComponents = this.props.cards[this.props.index].map((card) => {
+            return (
+                <Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
+                      removeCard={e => this.removeFromState(card.code)}/>
+            );
+        });
 
-  render(){ 
-
-    return(
-      <div>
-        {this.state.cardList}
-      </div>
-    );
-  }
+        return (
+            <div className="player-wrapper">
+                <div>
+                    {this.props.name} - [{this.props.points[this.props.index]}]
+                </div>
+                {cardListComponents}
+                <br/>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    cards: state.cards
-  };
+    return {
+        cards: state.cards,
+        currentPlayer: state.currentPlayer,
+        nump: state.nump,
+        tableCards: state.tableCards,
+        points: state.points
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-
-  };
+    return {
+        sendCardFromStoreToTable: ((playerIndex, cardIndex) => dispatch(SendCardFromStoreToTable(playerIndex, cardIndex))),
+        increasePoints: ((playerIndex, points) => dispatch(IncreasePoints(playerIndex, points)))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

@@ -5,16 +5,10 @@ import './Card.css';
 
 class Card extends Component {
 
-  removeCard = () => {
-    this.props.sendCardFromStoreToTable(this.props.cardId, this.props.playerId);
-    this.props.func(this.props.cardId);
-    this.props.updateTableCards();
-  };
-
   render(){
     return(
       <div className="card">
-        <img className="cardImage" src={this.props.url} onClick={this.removeCard}/>
+        <img className="cardImage" alt={this.props.code} src={this.props.url} onClick={this.props.removeCard}/>
       </div>
     );
   }

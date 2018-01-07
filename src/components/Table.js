@@ -1,50 +1,62 @@
 import React, { Component } from 'react';
-import Card from './Card';
 import { connect } from 'react-redux';
+import Card from "./Card";
+import CardStrength from "../CardStrength";
+import {IncreasePoints} from "../action";
 
 class Table extends Component {
-
-    constructor(props) {
-        super(props);
-
-        // const cardList = this.createCardComponents();
-
-        // this.state = {
-        //     cardList: this.props.table
-        // };
-    }
-
-    // createCardComponents = () => {
-    //     return this.props.table.map((card)=> {
-    //         return(
-    //             <Card key={card.code} url={card.image} func={()=>{}}/>
-    //         );
-    //     });
-    // };
-
     render(){
-        // let cardList = this.createCardComponents();
-        // console.log(cardList);
+        let reducedCardList = this.props.tableCards.filter((card)=>{
+            // if (this.props.tableCards.length === this.props.nump)
+            //     this.updatePoints();
+
+            return card!==undefined;
+        });
+        let cardList = reducedCardList.map((card)=>{
+            return (<Card url={card.image} code={card.code} key={card.code}
+                  removeCard={(e) => {return;}}/>);
+        });
 
         return(
-            <div>
-                {this.props.table}
+            <div className="table">
+                {cardList}
             </div>
         );
     }
 
+    updatePoints = () => {
+        // const cardValues = this.props.tableCards.map(card => card.value);
+        // const winnerPlayerIndex = CardStrength.strongestCard(cardValues);
+        // const pointsIncrease = CardStrength.valueOfCards(cardValues);
+        // this.props.increasePoints(winnerPlayerIndex, pointsIncrease);
+
+    };
+
+
+    componentWillReceiveProps = (newProps) => {
+        // console.log(newProps.tableCards);
+        if (newProps.tableCards.length === newProps.nump) {
+            setTimeout(()=>{
+                const cardValues = newProps.tableCards.map(card => card.value);
+                const winnerPlayerIndex = CardStrength.strongestCard(cardValues);
+                const pointsIncrease = CardStrength.valueOfCards(cardValues);
+                this.props.increasePoints(winnerPlayerIndex, pointsIncrease);
+            }, 1000);
+        }
+    };
 }
 
 
 const mapStateToProps = (state) => {
     return {
-        // table: state.table
+        tableCards: state.tableCards,
+        nump: state.nump
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        increasePoints: ( (playerIndex, points) => dispatch(IncreasePoints(playerIndex, points)))
     };
 };
 

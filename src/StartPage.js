@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { NumberPlayers, PlayerName } from './action';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
