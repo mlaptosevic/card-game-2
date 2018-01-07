@@ -5,7 +5,6 @@ import {AddCards, IncreasePoints} from './action';
 import Player from './components/Player.js';
 import {Button} from 'react-bootstrap';
 import Table from './components/Table';
-import Card from './components/Card';
 import './App.css';
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
@@ -20,10 +19,6 @@ class GamePage extends Component {
         this.state = {
             deckId: null,
             drawnHands: 0,
-            player1: null,
-            player2: null,
-            player3: null,
-            tableCards: []
         }
 
         this.getDeckId();
@@ -37,24 +32,14 @@ class GamePage extends Component {
         });
     }
 
-    createCardComponents = () => {
-        return this.props.tableCards.map((card) => {
-            return (
-                <Card key={card.code} url={card.image} func={() => {
-                }}/>
-            );
-        });
-    }
 
     drawCards = (playerNumber) => {
         axios.get(API_PATH + this.state.deckId + DRAW_CARDS_PATH).then(res => {
             let playersCards = res.data.cards;
             this.props.addCards(playersCards, playerNumber);
-            let tableCards = this.createCardComponents();
 
             this.setState({
                 drawnHands: this.state.drawnHands + 1,
-                tableCards: tableCards
             });
         });
     };

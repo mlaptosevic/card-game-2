@@ -1,7 +1,6 @@
 import _ from "lodash";
 
 export const reducer = (state, action) => {
-    // let copyState = Object.assign({}, state);
     let copyState = _.cloneDeep(state);
 
     switch (action.type) {
