@@ -37,26 +37,12 @@ class GamePage extends Component {
         });
     }
 
-    getPlayer = (playerName, playerNumber) => {
-        return (
-            <Player name={playerName} index={playerNumber}/>
-        );
-    };
-
     createCardComponents = () => {
         return this.props.tableCards.map((card) => {
             return (
                 <Card key={card.code} url={card.image} func={() => {
                 }}/>
             );
-        });
-    }
-
-    updateTableCards = () => {
-        const newTableCards = this.createCardComponents();
-
-        this.setState({
-            tableCards: newTableCards
         });
     }
 
@@ -89,8 +75,14 @@ class GamePage extends Component {
         if(this.props.winners[0] === -1)
             return '';
 
+        let winnersNames =  [];
+
+        this.props.winners.forEach((winnerIndex) => {
+            winnersNames.push(this.props.playersName[winnerIndex]);
+        });
+
         return (
-            <p>Winners are players with numbers: {this.props.winners}</p>
+            <p>Winners are : {winnersNames}</p>
         );
     }
 
@@ -113,19 +105,19 @@ class GamePage extends Component {
                 </header>
                 <div>
                     <div>
-                        {this.state.drawnHands === this.props.nump ? <Player name='Player1' index={1}/> : ''}
+                        {this.state.drawnHands === this.props.nump ? <Player name={this.props.playersName[1]} index={1}/> : ''}
                     </div>
                     <div>
                         {this.state.drawnHands === this.props.nump && this.props.nump >= 3 ?
-                            <Player name='Player2' index={2}/> : ''}
+                            <Player name={this.props.playersName[2]} index={2}/> : ''}
                     </div>
                     <div>
                         {this.state.drawnHands === this.props.nump && this.props.nump >= 4 ?
-                            <Player name='Player3' index={3}/> : ''}
+                            <Player name={this.props.playersName[3]} index={3}/> : ''}
                     </div>
                     <div>
                         <br/>{this.state.drawnHands === this.props.nump ?
-                        <Player name={this.props.name} index={0}/> : ''}
+                        <Player name={this.props.playersName[0]} index={0}/> : ''}
                     </div>
                 </div>
             </div>
@@ -139,7 +131,7 @@ const mapStateToProps = (state) => {
         points: state.points,
         nump: state.nump,
         tableCards: state.tableCards,
-        name: state.name,
+        playersName: state.playersName,
         winners: state.winners
     };
 };
@@ -152,4 +144,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);
-// export default GamePage;

@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 import {IncreasePoints, SendCardFromStoreToTable} from "../action";
 import "./Player.css";
 import backCardImage from './karta.jpg';
-import CardStrength from "../CardStrength";
-
 
 class Player extends Component {
     constructor(props) {
@@ -17,15 +15,16 @@ class Player extends Component {
     }
 
     removeFromState = (cardCode) => {
-        if (this.props.index !== 0)
+        if (this.props.index !== 0 || this.props.tableCards.length !== 0)
             return;
+
         this.props.sendCardFromStoreToTable(this.props.index, cardCode);
 
         for (let botPlayerIndex = 1; botPlayerIndex < this.props.nump; botPlayerIndex++) {
             let randomCardCode = this.props.cards[botPlayerIndex].pop().code;
-            setTimeout(()=> {
+            setTimeout(() => {
                 this.props.sendCardFromStoreToTable(botPlayerIndex, randomCardCode);
-            },botPlayerIndex * 500);
+            }, botPlayerIndex * 500);
         }
     };
 

@@ -9,7 +9,7 @@ export const NumberPlayers = (nump) => {
 export const PlayerName = (name) => {
   return {
       type: 'PLAYER_NAME',
-      name: name
+      playersName: name
   };
 };
 

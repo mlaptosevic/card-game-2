@@ -4,7 +4,7 @@ import {createStore} from 'redux';
 const getInitialState = () => {
     return {
         nump: 2,
-        name: '',
+        playersName: [],
         cards: [],
         points: [],
         tableCards: [],

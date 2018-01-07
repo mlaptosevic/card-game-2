@@ -10,18 +10,18 @@ class StartPage extends Component {
     super(props);
 
     this.state = {
-      name: ''
+      playersName: ''
     }
   };
 
   saveName = (e) => {
     this.setState({
-      name: e.target.value
+      playersName: e.target.value
     });
   };
 
   sendActionChangeName = () => {
-    this.props.changeName(this.state.name);
+    this.props.changeName(this.state.playersName);
     this.props.changeFirstpart();
 
   };

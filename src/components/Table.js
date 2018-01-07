@@ -7,9 +7,6 @@ import {IncreasePoints} from "../action";
 class Table extends Component {
     render(){
         let reducedCardList = this.props.tableCards.filter((card)=>{
-            // if (this.props.tableCards.length === this.props.nump)
-            //     this.updatePoints();
-
             return card!==undefined;
         });
         let cardList = reducedCardList.map((card)=>{
@@ -24,17 +21,8 @@ class Table extends Component {
         );
     }
 
-    updatePoints = () => {
-        // const cardValues = this.props.tableCards.map(card => card.value);
-        // const winnerPlayerIndex = CardStrength.strongestCard(cardValues);
-        // const pointsIncrease = CardStrength.valueOfCards(cardValues);
-        // this.props.increasePoints(winnerPlayerIndex, pointsIncrease);
-
-    };
-
 
     componentWillReceiveProps = (newProps) => {
-        // console.log(newProps.tableCards);
         if (newProps.tableCards.length === newProps.nump) {
             setTimeout(()=>{
                 const cardValues = newProps.tableCards.map(card => card.value);

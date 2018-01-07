@@ -8,7 +8,13 @@ export const reducer = (state, action) => {
         case "NUMP":
             return Object.assign(copyState, {nump: action.amount});
         case "PLAYER_NAME":
-            return Object.assign(copyState, {name: action.name});
+            let playerName = [];
+            playerName[0] = action.playersName;
+            for (let botIndex = 1; botIndex < copyState.nump; botIndex++)
+                playerName[botIndex] = 'Player' + botIndex;
+
+            copyState.playersName = playerName;
+            return copyState;
         case "ADD_CARDS":
             copyState.cards[action.index] = action.cards;
             return copyState;
@@ -23,11 +29,11 @@ export const reducer = (state, action) => {
 
             copyState.tableCards[action.playerId] = card;
             copyState.cards[action.playerId] = newPlayerCards;
-            copyState.currentPlayer = (copyState.currentPlayer + 1 ) % copyState.nump
+            copyState.currentPlayer = (copyState.currentPlayer + 1) % copyState.nump
 
             return copyState;
         case "INCREASE_POINTS":
-            if(copyState.points[action.playerIndex]===undefined)
+            if (copyState.points[action.playerIndex] === undefined)
                 copyState.points[action.playerIndex] = 0;
 
             copyState.points[action.playerIndex] += action.points;
@@ -35,14 +41,14 @@ export const reducer = (state, action) => {
             copyState.tableCards = [];
 
             // end game
-            if(copyState.cards[0] !== undefined && copyState.cards[0].length === 0) {
-                let maxNumberOfPoints = copyState.points.reduce((acc, playerPoints)=>{
-                    return playerPoints>acc?playerPoints:acc;
-                },0);
+            if (copyState.cards[0] !== undefined && copyState.cards[0].length === 0) {
+                let maxNumberOfPoints = copyState.points.reduce((acc, playerPoints) => {
+                    return playerPoints > acc ? playerPoints : acc;
+                }, 0);
 
                 let winners = [];
 
-                for(let playerIndex = 0; playerIndex < copyState.nump; playerIndex++)
+                for (let playerIndex = 0; playerIndex < copyState.nump; playerIndex++)
                     if (copyState.points[playerIndex] === maxNumberOfPoints)
                         winners.push(playerIndex);
 
