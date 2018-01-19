@@ -36,7 +36,7 @@ class Player extends Component {
 
         let cardListComponents = this.props.cards[this.props.index].map((card) => {
             return (
-        <ErrorBoundary><Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
+        <ErrorBoundary key={card.code}><Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
                       removeCard={e => this.removeFromState(card.code)}/> </ErrorBoundary>
             );
         });

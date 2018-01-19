@@ -30,7 +30,7 @@ class StartPage extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <h3> Choose number of players </h3>
+                    <h3> Number of players: {this.props.state.nump} </h3>
                 </header>
                 <div className="block">
                     <Button bsSize="large" bsStyle="warning" className="nump"
