@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {IncreasePoints, SendCardFromStoreToTable} from "../action";
 import "./Player.css";
 import backCardImage from './karta.jpg';
+import ErrorBoundary from "../errorBoundary";
 
 class Player extends Component {
     constructor(props) {
@@ -35,8 +36,8 @@ class Player extends Component {
 
         let cardListComponents = this.props.cards[this.props.index].map((card) => {
             return (
-                <Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
-                      removeCard={e => this.removeFromState(card.code)}/>
+        <ErrorBoundary><Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
+                      removeCard={e => this.removeFromState(card.code)}/> </ErrorBoundary>
             );
         });
 

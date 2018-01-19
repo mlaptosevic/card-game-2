@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import GamePage from './GamePage.js';
 import StartPage from './StartPage.js';
+import ErrorBoundary from "./errorBoundary";
 
 
 
@@ -25,7 +26,9 @@ class App extends Component {
 
     return (
       <div>
-    {this.state.firstpart ? <StartPage changeFirstpart={()=>this.changeFirstpart()}/> : <GamePage />}
+    {this.state.firstpart ?
+        <ErrorBoundary><StartPage changeFirstpart={()=>this.changeFirstpart()}/></ErrorBoundary>  :
+        <ErrorBoundary> <GamePage /></ErrorBoundary>}
       </div>
     );
   }

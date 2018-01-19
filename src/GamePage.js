@@ -6,6 +6,7 @@ import Player from './components/Player.js';
 import {Button} from 'react-bootstrap';
 import Table from './components/Table';
 import './App.css';
+import ErrorBoundary from "./errorBoundary";
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
 const SHUFFLE_DECK_PATH = 'new/shuffle/';
@@ -76,28 +77,36 @@ class GamePage extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-xs-6 col-xs-offset-3">
-                        {this.state.drawnHands === this.props.nump ?
-                            <Player name={this.props.playersName[1]} index={1}/> : ''}
+                        <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                                <Player name={this.props.playersName[1]} index={1}/> : ''}
+                        </ErrorBoundary>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-5">
-                        {this.state.drawnHands === this.props.nump ?
-                            <Player name={this.props.playersName[2]} index={2}/> : ''}
+                        <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                                <Player name={this.props.playersName[2]} index={2}/> : ''}
+                        </ErrorBoundary>
                     </div>
                     <div className="col-xs-2">
                         {this.props.winners[0] === -1?<Table/>:
                         this.printWinners()}
                     </div>
                     <div className="col-xs-5">
-                        {this.state.drawnHands === this.props.nump ?
-                            <Player name={this.props.playersName[3]} index={3}/> : ''}
+                        <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                                <Player name={this.props.playersName[3]} index={3}/> : ''}
+                        </ErrorBoundary>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-6 col-xs-offset-3">
-                        {this.state.drawnHands === this.props.nump ?
-                            <Player name={this.props.playersName[0]} index={0}/> : ''}
+                        <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                                <Player name={this.props.playersName[0]} index={0}/> : ''}
+                        </ErrorBoundary>
                     </div>
                 </div>
                 <div className="row">
