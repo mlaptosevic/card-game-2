@@ -21,13 +21,13 @@ export const AddCards = (cards, index) => {
   };
 };
 
-export const RemoveCards = (playerIndex, cardCode) => {
-    return {
-        type: 'REMOVE_CARDS',
-        playerIndex: playerIndex,
-        cardCode: cardCode
-    };
-};
+// export const RemoveCards = (playerIndex, cardCode) => {
+//     return {
+//         type: 'REMOVE_CARDS',
+//         playerIndex: playerIndex,
+//         cardCode: cardCode
+//     };
+// };
 
 export const SendCardFromStoreToTable = (playerId, cardId) => {
   return {

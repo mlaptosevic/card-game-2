@@ -22,7 +22,7 @@ class StartPage extends Component {
 
     sendActionChangeName = () => {
         this.props.changeName(this.state.playersName);
-        this.props.changeFirstpart();
+        this.props.changeShowStartPage();
 
     };
 

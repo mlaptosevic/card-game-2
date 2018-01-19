@@ -20,7 +20,7 @@ class GamePage extends Component {
         this.state = {
             deckId: null,
             drawnHands: 0,
-        }
+        };
 
         this.getDeckId();
     }

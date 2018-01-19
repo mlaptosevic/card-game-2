@@ -12,13 +12,13 @@ class App extends Component {
    super(props);
 
    this.state = {
-     firstpart: true
+     showStartPage: true
    };
  }
 
- changeFirstpart() {
+ changeShowStartPage() {
    this.setState({
-     firstpart: !this.state.firstpart
+     showStartPage: !this.state.showStartPage
    });
  }
 
@@ -26,11 +26,12 @@ class App extends Component {
 
     return (
       <div>
-    {this.state.firstpart ?
-        <ErrorBoundary><StartPage changeFirstpart={()=>this.changeFirstpart()}/></ErrorBoundary>  :
+    {this.state.showStartPage ?
+        <ErrorBoundary><StartPage changeShowStartPage={()=>this.changeShowStartPage()}/></ErrorBoundary>  :
         <ErrorBoundary> <GamePage /></ErrorBoundary>}
       </div>
     );
   }
 }
+
 export default App;
