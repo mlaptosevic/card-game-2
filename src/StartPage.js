@@ -21,7 +21,7 @@ class StartPage extends Component {
     };
 
     sendActionChangeName = () => {
-        this.props.changeName(this.state.playersName);
+        this.props.changeName(this.state.playersName, this.props.state.nump);
         this.props.changeShowStartPage();
 
     };
@@ -63,7 +63,7 @@ const StateToProps = (state) => {
 const DispatchToProps = (dispatch) => {
     return {
         changeNump: ((nump) => dispatch(NumberPlayers(nump))),
-        changeName: ((name) => dispatch(PlayerName(name)))
+        changeName: ((name, nump) => dispatch(PlayerName(name, nump)))
     }
 };
 

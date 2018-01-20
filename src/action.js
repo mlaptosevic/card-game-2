@@ -4,12 +4,13 @@ export const NumberPlayers = (nump) => {
     type: 'NUMP',
     amount: nump
   }
-}
+};
 
-export const PlayerName = (name) => {
+export const PlayerName = (name, nump) => {
   return {
       type: 'PLAYER_NAME',
-      playersName: name
+      playersName: name,
+      nump: nump
   };
 };
 
@@ -21,19 +22,37 @@ export const AddCards = (cards, index) => {
   };
 };
 
-// export const RemoveCards = (playerIndex, cardCode) => {
-//     return {
-//         type: 'REMOVE_CARDS',
-//         playerIndex: playerIndex,
-//         cardCode: cardCode
-//     };
-// };
+export const AddWinners = (winners) => {
+    return {
+        type: 'ADD_WINNER',
+        winners: winners
+    }
+};
 
-export const SendCardFromStoreToTable = (playerId, cardId) => {
+export const IncreaseCurrentPlayer = (nump) => {
+    return {
+        type: "INCREASE_CURRENT_PLAYER",
+        nump: nump
+    };
+};
+
+export const Reset = () => {
+    return {
+        type: "RESET"
+    };
+};
+
+export const Clear = () => {
+    return {
+        type: "CLEAR"
+    };
+};
+
+export const AddCardToTable = (index, card) => {
   return {
-    type: 'SEND_CARD_FROM_STORE_TO_TABLE',
-    cardId: cardId,
-    playerId: playerId
+    type: 'ADD_CARD_TO_TABLE',
+    card: card,
+    index: index
   };
 };
 

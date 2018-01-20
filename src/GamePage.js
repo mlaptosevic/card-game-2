@@ -70,7 +70,7 @@ class GamePage extends Component {
         return (
             <p>Winners are : {winnersNames}</p>
         );
-    }
+    };
 
     render() {
         return (

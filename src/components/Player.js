@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Card from './Card';
 import {connect} from 'react-redux';
-import {IncreasePoints, SendCardFromStoreToTable} from "../action";
+import {IncreasePoints, AddCardToTable, IncreaseCurrentPlayer, AddCards} from "../action";
 import "./Player.css";
 import backCardImage from './karta.jpg';
 import ErrorBoundary from "../errorBoundary";
@@ -19,15 +19,30 @@ class Player extends Component {
         if (this.props.index !== 0 || this.props.tableCards.length !== 0)
             return;
 
-        this.props.sendCardFromStoreToTable(this.props.index, cardCode);
+        this.addCardFromHandToTable(this.props.index, cardCode);
 
         for (let botPlayerIndex = 1; botPlayerIndex < this.props.nump; botPlayerIndex++) {
             let randomCardCode = this.props.cards[botPlayerIndex].pop().code;
             setTimeout(() => {
-                this.props.sendCardFromStoreToTable(botPlayerIndex, randomCardCode);
+                this.addCardFromHandToTable(botPlayerIndex, randomCardCode);
             }, botPlayerIndex * 500);
         }
     };
+
+    addCardFromHandToTable = (index, cardCode) => {
+        let card = this.props.cards[index].filter((card) => {
+            return card.code === cardCode;
+        })[0];
+
+        let newPlayerCards = this.props.cards[index].filter((card) => {
+            return card.code !== cardCode;
+        });
+
+        this.props.AddCardToTable(index, card);
+        this.props.UpdateCardHand(index, newPlayerCards);
+        this.props.increaseCurrentPlayer(this.props.nump);
+
+    }
 
 
     render() {
@@ -65,9 +80,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        sendCardFromStoreToTable: ((playerIndex, cardIndex) => dispatch(SendCardFromStoreToTable(playerIndex, cardIndex))),
-        increasePoints: ((playerIndex, points) => dispatch(IncreasePoints(playerIndex, points)))
-    };
+        AddCardToTable: ((playerIndex, card) => dispatch(AddCardToTable(playerIndex, card))),
+        UpdateCardHand: ((playerIndex, cards) => dispatch(AddCards(cards, playerIndex))),
+        increasePoints: ((playerIndex, points) => dispatch(IncreasePoints(playerIndex, points))),
+        increaseCurrentPlayer: ( (nump) => dispatch(IncreaseCurrentPlayer(nump)))
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Player);

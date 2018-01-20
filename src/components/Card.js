@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {SendCardFromStoreToTable} from '../action';
-import {connect} from 'react-redux';
 import './Card.css';
 
-class Card extends Component {
+export default class Card extends Component {
 
     render() {
         return (
@@ -13,11 +11,3 @@ class Card extends Component {
         );
     }
 }
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        sendCardFromStoreToTable: ((cardId, playerId) => dispatch(SendCardFromStoreToTable(cardId, playerId)))
-    };
-};
-
-export default connect(()=>{return {}}, mapDispatchToProps)(Card);
