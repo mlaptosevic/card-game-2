@@ -9,19 +9,6 @@
   color: white;
 }
 
-/* .App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-} */
-
-/* @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
-
 .nump {
   padding:20px;
   margin:20px;
@@ -37,15 +24,6 @@
 
 .border {
  border:1px solid green;
-}
-
-.table {
-  height:110px;
-  background-color:limegreen;
-}
-
-.table .cardImage {
-  width: 40px;
 }
 
 .gameplay{
@@ -73,16 +51,4 @@
 
 p {
   color:black;
-}
-
-.pink{
-  background-color:#ffccff;
-}
-
-.blue {
-  background-color:#cc99ff;
-}
-
-.green {
-  background-color:#99ff66;
 }

@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+ .background {
+   background: radial-gradient(#74deb7 1%, #003052 99%);
+   height: 100vh;
+   width: 100vw;
+ }
+
+.main-menu {
+  margin:0 auto;
+  height: 100vh;
+  background: linear-gradient(#182d26, #71b49f);
+  display: flex;
+  flex-direction: column;
+  box-shadow:0px 20px 50px 15px black;
+}
+
+.title-centered {
+  display:block;
+  font-family: 'Audiowide', cursive;
+  color: #d5ca12;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  display:flex;
+  flex-direction: column;
+  padding:0;
+  padding-top:30px;
+  margin: 0;
+}
+
+.nameEntry {
+  color: #002f52;
+}
+
+.nump {
+  margin-left: 20px;
+  font-family: 'Audiowide', cursive;
+  text-transform: uppercase;
+  background-color: #00477b;
+  box-shadow: inset 0 0 25px 25px #003052;
+}
+
+.nump:active {
+  background-color: #003052 !important;
+  box-shadow: inset 0 0 15px 15px #011f36 !important;
+  text-shadow: 2px 2px #011f36;
+}
+
+.cardTitle {
+  margin: -10px;
+  text-shadow: 1px 1px 5px #6e7e36, 0 0 25px #6e7e36, 0 0 5px #6e7e36;
+  }
+
+.gameTitle {
+  margin-left:-15px;
+  text-shadow: 1px 1px 5px #6e7e36, 0 0 25px #6e7e36, 0 0 5px #6e7e36;
+}
+
+input {
+  padding-left:35px;
+}
+
+input:focus {
+  padding-left:35px;
+}
+
+input:active {
+  padding-left:35px;
+}
+
+.input-centered {
+  display: flex;
+  justify-content: center;
+  margin-top:50px;
+  min-height:45px;
+  color:blue;
+}
+
+.nameEntry {
+  background-color: transparent;
+  color:white;
+}
+
+.submitButton {
+  font-family: 'Audiowide', cursive;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin:20px;
+  min-height:80px;
+  background-color: #00477b;
+  box-shadow: inset 0 0 25px 25px #003052;
+}
+
+.submitButton:hover {
+  text-shadow: 4px 4px #003052;
+}
+
+.submitButton:active {
+  background-color: #003052 !important;
+  box-shadow: inset 0 0 15px 15px #011f36 !important;
+  text-shadow: 4px 4px #011f36;
+}
+
+@media only screen and (max-width : 320px) {
+  .main-menu {
+    width: 90%;
+  }
+  .title {
+    font-size:40px;
+  }
+  .gameTitle {
+    margin-top: 0px;
+  }
+}
+
+/* Smartphones (portrait and landscape)*/
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  .main-menu {
+    width: 90%;
+  }
+  .title {
+    font-size:40px;
+  }
+  .gameTitle {
+    margin-top: 0px;
+  }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+  .main-menu {
+    width: 75%;
+  }
+  .title {
+    font-size:50px;
+  }
+  .gameTitle {
+    margin-top: -5px;
+  }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .main-menu {
+    width: 55%;
+  }
+  .title {
+    font-size:60px;
+  }
+  .gameTitle {
+    margin-top: -10px;
+  }
+}
+
+@media only screen and (min-width : 1024px) and (max-width : 1224px) {
+  .main-menu {
+    width: 45%;
+  }
+  .title {
+    font-size:70px;
+  }
+  .gameTitle {
+    margin-top: -20px;
+  }
+}
+
+/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+  .main-menu {
+    width: 35%;
+  }
+  .title {
+    font-size:80px;
+  }
+  .gameTitle {
+    margin-top: -30px;
+  }
+}

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Card from './Card';
 import {connect} from 'react-redux';
 import {IncreasePoints, AddCardToTable, IncreaseCurrentPlayer, AddCards} from "../action";
+import {Label} from 'react-bootstrap';
 import "./Player.css";
 import backCardImage from './karta.jpg';
 import ErrorBoundary from "../errorBoundary";
@@ -25,7 +26,7 @@ class Player extends Component {
             let randomCardCode = this.props.cards[botPlayerIndex].pop().code;
             setTimeout(() => {
                 this.addCardFromHandToTable(botPlayerIndex, randomCardCode);
-            }, botPlayerIndex * 500);
+            }, botPlayerIndex * 700);
         }
     };
 
@@ -46,22 +47,48 @@ class Player extends Component {
 
 
     render() {
+
         if (!(this.props.index !== undefined && this.props.cards && this.props.cards[this.props.index]))
             return null;
 
         let cardListComponents = this.props.cards[this.props.index].map((card) => {
+            if ((this.props.index===0)||(this.props.index===2))
             return (
-        <ErrorBoundary key={card.code}><Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
-                      removeCard={e => this.removeFromState(card.code)}/> </ErrorBoundary>
+                <li className="horizontal" key={card.code}>
+                  <ErrorBoundary key={card.code}>
+                    <Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
+                    removeCard={e => this.removeFromState(card.code)} />
+                  </ErrorBoundary>
+                </li>
             );
+            else {
+              return (
+                  <li className="vertical" key={card.code}>
+                    <ErrorBoundary key={card.code}>
+                      <Card url={this.props.index === 0 ? card.image : backCardImage} code={card.code} key={card.code}
+                      removeCard={e => this.removeFromState(card.code)} />
+                    </ErrorBoundary>
+                  </li>
+                );
+            }
         });
 
         return (
-            <div className="player-wrapper">
+            <div className="player-wrapper container-fluid">
+
                 <div>
-                    {this.props.name} - [{this.props.points[this.props.index]}]
-                </div>
+                  <ul className="no-bullet">
+                  <li className="labelName">
+                    <Label className="labelPlayerName">
+                        {this.props.name}
+                    </Label>
+                    <Label className="labelPoints" >
+                        {this.props.points[this.props.index]}
+                    </Label>
+                  </li>
                 {cardListComponents}
+                  </ul>
+                </div>
                 <br/>
             </div>
         );

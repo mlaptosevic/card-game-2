@@ -3,10 +3,11 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {AddCards, IncreasePoints} from './action';
 import Player from './components/Player.js';
-import {Button} from 'react-bootstrap';
+import {Button, Panel} from 'react-bootstrap';
 import Table from './components/Table';
 import './App.css';
 import ErrorBoundary from "./errorBoundary";
+import './GamePage.css';
 
 const API_PATH = 'https://deckofcardsapi.com/api/deck/';
 const SHUFFLE_DECK_PATH = 'new/shuffle/';
@@ -44,8 +45,9 @@ class GamePage extends Component {
             });
         });
     };
+    drawAllCards = (btn) => {
+      btn.target.className += " hidden";
 
-    drawAllCards = () => {
         for (let i = 0; i < this.props.nump; i++) {
             this.drawCards(i);
             this.initPlayersPoints(i);
@@ -68,54 +70,59 @@ class GamePage extends Component {
         });
 
         return (
-            <p>Winners are : {winnersNames}</p>
+            <Panel className="panelWinner">
+              Winner: <br/>
+              {winnersNames}
+            </Panel>
         );
     };
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid backgroundTexture">
                 <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3">
-                        <ErrorBoundary>
+                    <div className="col-xs-4 vertical-row col-xl-4">
+						              <ErrorBoundary>
                             {this.state.drawnHands === this.props.nump ?
                                 <Player name={this.props.playersName[1]} index={1}/> : ''}
-                        </ErrorBoundary>
+                          </ErrorBoundary>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-5">
-                        <ErrorBoundary>
+
+                    <div className="col-xs-5 col-xl-5">
+                      <div className="horizontal-row">
+						               <ErrorBoundary>
                             {this.state.drawnHands === this.props.nump ?
                                 <Player name={this.props.playersName[2]} index={2}/> : ''}
-                        </ErrorBoundary>
+                           </ErrorBoundary>
                     </div>
-                    <div className="col-xs-2">
-                        {this.props.winners[0] === -1?<Table/>:
-                        this.printWinners()}
-                    </div>
-                    <div className="col-xs-5">
-                        <ErrorBoundary>
-                            {this.state.drawnHands === this.props.nump ?
-                                <Player name={this.props.playersName[3]} index={3}/> : ''}
-                        </ErrorBoundary>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-6 col-xs-offset-3">
-                        <ErrorBoundary>
-                            {this.state.drawnHands === this.props.nump ?
-                                <Player name={this.props.playersName[0]} index={0}/> : ''}
-                        </ErrorBoundary>
-                    </div>
-                </div>
-                <div className="row">
+
                     <div>
-                        <Button bsSize="large" bsStyle="success" onClick={this.drawAllCards}>
-                            Draw cards </Button>
+                          <Table/>
+                    </div>
+
+                      <div className="horizontal-row">
+                          <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                              <Player name={this.props.playersName[0]} index={0}/> : ''}
+                          </ErrorBoundary>
                     </div>
                 </div>
-            </div>
+                    <div className="col-xs-3 vertical-row col-xl-3 left ">
+                          <ErrorBoundary>
+                            {this.state.drawnHands === this.props.nump ?
+                            <Player name={this.props.playersName[3]} index={3}/> : ''}
+                          </ErrorBoundary>
+                    </div>
+                    <div className="col-xl-1"></div>
+
+                    <div>
+                        <Button bsSize="large" bsStyle="success" onClick={(btn) => this.drawAllCards(btn)} className="drawButton">
+                            Draw </Button>
+                    </div>
+                </div>
+                    {this.printWinners()}
+
+                </div>
         );
     }
 }

@@ -1,0 +1,120 @@
+.table {
+  background-color: #009a65;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width : 320px) {
+  .table {
+    margin-left:-85px;
+    margin-top:20px;
+    padding-top:15px;
+    height:180px;
+    width:500px;
+    border-radius: 25px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 100px;
+  }
+  .cardImage {
+    width: 100px;
+  }
+}
+
+/* Smartphones (portrait and landscape)*/
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  .table {
+    margin-left:-85px;
+    margin-top:20px;
+    padding-top:15px;
+    height:180px;
+    width:500px;
+    border-radius: 25px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 100px;
+  }
+  .cardImage {
+    width: 100px;
+  }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+  .table {
+    margin-left:-15px;
+    margin-top:20px;
+    padding-top:25px;
+    height:200px;
+    width:400px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 50px;
+  }
+  .cardImage {
+    width: 60px;
+  }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .table {
+    margin-left:-45px;
+    margin-top:20px;
+    padding-top:15px;
+    height:130px;
+    width:400px;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 60px;
+  }
+  .cardImage {
+    width: 90px;
+  }
+}
+
+@media only screen and (min-width : 1024px) and (max-width : 1224px) {
+  .table {
+    margin-left:-45px;
+    margin-top:20px;
+    padding-top:15px;
+    height:180px;
+    width:500px;
+    border-radius: 25px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 100px;
+  }
+  .cardImage {
+    width: 100px;
+  }
+}
+
+/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+  .table {
+    margin-left:-85px;
+    margin-top:20px;
+    padding-top:15px;
+    height:180px;
+    width:500px;
+    border-radius: 25px;
+    display:flex;
+    justify-content: center;
+  }
+  .table .cardImage {
+    width: 100px;
+  }
+  .cardImage {
+    width: 100px;
+  }
+}

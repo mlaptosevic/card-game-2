@@ -3,22 +3,29 @@ import {connect} from 'react-redux';
 import Card from "./Card";
 import CardStrength from "../CardStrength";
 import {AddWinners, Clear, IncreasePoints, Reset} from "../action";
+import './table.css';
+import ErrorBoundary from '../errorBoundary';
 
 class Table extends Component {
     render() {
+        if (this.props.cards.length !== this.props.nump)
+          return '';
+
         let reducedCardList = this.props.tableCards.filter((card) => {
             return card !== undefined;
         });
         let cardList = reducedCardList.map((card) => {
-            return (<Card url={card.image} code={card.code} key={card.code}
+            return (<ErrorBoundary key={card.code}><Card url={card.image} code={card.code} key={card.code}
                           removeCard={(e) => {
                               return;
-                          }}/>);
+                          }}/></ErrorBoundary>);
         });
 
+        let classList = "table ";
+        classList+=this.props.nump===2?'top':'';
         return (
-            <div className="table">
-                {cardList}
+            <div className={classList}>
+                <div >{cardList}</div>
             </div>
         );
     }

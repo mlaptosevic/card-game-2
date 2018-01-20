@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {NumberPlayers, PlayerName} from './action';
 import {connect} from 'react-redux';
 import {Button} from 'react-bootstrap';
-import './App.css';
+import './StartPage.css';
 
 class StartPage extends Component {
 
@@ -10,7 +10,7 @@ class StartPage extends Component {
         super(props);
 
         this.state = {
-            playersName: ''
+            playersName: 'YOU'
         }
     };
 
@@ -28,30 +28,35 @@ class StartPage extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <h3> Number of players: {this.props.state.nump} </h3>
-                </header>
-                <div className="block">
-                    <Button bsSize="large" bsStyle="warning" className="nump"
+            <div className="background">
+                <div className="main-menu">
+                    <div className="title-centered">
+                      <div className="title">
+                        <div className="cardTitle">CARD</div>
+                        <div className="gameTitle">GAME</div>
+                      </div>
+                    </div>
+                    <div className="input-centered">
+                      <input type="text" onChange={this.saveName}
+                        className="nameEntry" placeholder="ENTER YOUR NAME" />
+                    </div>
+                          <Button bsSize="large" bsStyle="info" className="nump"
                             onClick={(() => this.props.changeNump(2))}>2 players</Button>
-                    <Button bsSize="large" bsStyle="danger" className="nump" onClick={(() => this.props.changeNump(3))}>3
+                          <Button bsSize="large" bsStyle="info" className="nump" onClick={(() => this.props.changeNump(3))}>3
                         players</Button>
                     <Button bsSize="large" bsStyle="info" className="nump" onClick={(() => this.props.changeNump(4))}>4
                         players</Button>
-                </div>
-                <div className="clearfix"></div>
                 <br/>
-                <div className="block">
-                    <p>Enter your name</p>
-                    <input type="text" onChange={this.saveName}/>
-                </div>
+
                 <br/>
-                <div className="block">
-                    <Button bsSize="large" bsStyle="success" onClick={this.sendActionChangeName}>Submit</Button> <br/>
+
+                        <Button bsSize="large" bsStyle="info" className="submitButton"
+                        onClick={this.sendActionChangeName}>PLAY</Button> <br/>
 
                 </div>
             </div>
+
+
         );
     }
 }

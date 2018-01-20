@@ -1,4 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:500');
+
 .player-wrapper {
-    overflow: hidden;
-    margin-top:10px;
+    /* margin-top:10px;
+    display: flex;
+    flex-direction: column; */
+}
+
+.labelPlayerName {
+  background-color: #009a65!important;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  padding:15px;
+  margin-top: -150px;
+}
+
+.labelPoints {
+  background-color: #5dd79d!important;
+  color:#413232;
+  font-size: 20px;
+  padding-top:6px;
+  font-family: 'Kanit', sans-serif;
+  margin-left:10px;
+  padding-bottom: 10px;
+}
+
+.no-bullet {
+  list-style-type: none;
+}
+
+.horizontal {
+  margin-left:-40px;
+  float:left;
+}
+
+.vertical .card {
+  float: none;
+}
+
+@media only screen and (max-width : 320px) {
+  .horizontal {
+    margin-left:-40px;
+  }
+  .vertical {
+    margin-top:-60px;
+  }
+}
+
+/* Smartphones (portrait and landscape)*/
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  .horizontal {
+    margin-left:-40px;
+  }
+  .vertical {
+    margin-top:-60px;
+  }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+  .horizontal {
+    margin-left:-60px;
+  }
+  .vertical {
+    margin-top:-80px;
+  }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .horizontal {
+    margin-left:-80px;
+  }
+  .vertical {
+    margin-top:-110px;
+  }
+}
+
+@media only screen and (min-width : 1024px) and (max-width : 1224px) {
+  .horizontal {
+    margin-left:-80px;
+  }
+  .vertical {
+    margin-top:-120px;
+  }
+}
+
+/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+  .horizontal {
+    margin-left:-80px;
+  }
+  .vertical {
+    margin-top:-120px;
+  }
 }

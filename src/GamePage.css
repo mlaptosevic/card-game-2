@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Kanit:700');
+
+.backgroundTexture {
+  background-image: url(TEXTURE.jpg);
+  background-repeat: repeat;
+  height: 100vh;
+}
+
+.drawButton {
+  position:absolute;
+  bottom:50px;
+  left: 50px;
+  color: #c4b512;
+  text-transform:uppercase;
+  background-color: #7b0700;
+  font-family: 'Kanit', sans-serif;
+  font-size: 25px;
+  box-shadow: inset 0 0 15px 15px #540500;
+}
+
+.drawButton:hover {
+  color: #f4e116;
+  background-color: #992f28;
+  box-shadow: inset 0 0 15px 15px #540500;
+  text-shadow: 2px 2px #390401;
+}
+
+.hidden {
+    display: none;
+}
+
+.drawButton:focus {
+  color: #c4b512!important;
+  background-color: #7b0700;
+  box-shadow: inset 0 0 5px 5px #540500;
+  text-shadow: 2px 2px #540500;
+}
+
+.drawButton:active {
+  color: #c4b512;
+  background-color: #7b0700!important;
+  box-shadow: inset 0 0 5px 5px #540500;
+  text-shadow: 2px 2px #540500;
+}
+
+.panelWinner {
+  position:absolute;
+  bottom:50px;
+  color: #c4b512;
+  right: 50px;
+  text-transform:uppercase;
+  background-color: #7b0700;
+  font-family: 'Kanit', sans-serif;
+  font-size: 25px;
+  box-shadow: inset 0 0 15px 15px #540500;
+}
+
+.left {
+  float:left;
+}
+
+.top {
+  margin-top: 200px;
+}
+
+@media only screen and (max-width : 320px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 130px;
+  }
+  .horizontal-row .labelName{
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}
+
+/* Smartphones (portrait and landscape)*/
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 130px;
+  }
+  .horizontal-row .labelName{
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 768px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 130px;
+  }
+  .horizontal-row .labelName{
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 150px;
+  }
+  .horizontal-row .labelName{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width : 1024px) and (max-width : 1224px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 170px;
+  }
+  .horizontal-row .labelName {
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .horizontal-row {
+    margin-top:-20px;
+  }
+}
+
+/* Desktops and laptops */
+@media only screen  and (min-width : 1224px) {
+  .vertical-row .labelName {
+    margin-top: 100px;
+    margin-bottom: 170px;
+  }
+  .horizontal-row .labelName{
+    margin-left:50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  .horizontal-row {
+    margin-top:-20px;
+  }
+}
